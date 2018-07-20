@@ -16,5 +16,5 @@ client = AcsClient(
 request = DeleteDomainRecordRequest.DeleteDomainRecordRequest()
 request.set_RecordId(open('/tmp/ali-dns-record-id', 'r').read().rstrip())
 
-response = client.do_action_with_exception(request)
-print(response)
+client.do_action_with_exception(request)
+print('successfully delete domain record used for challenge validation...')

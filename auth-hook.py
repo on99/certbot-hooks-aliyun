@@ -22,6 +22,7 @@ request.set_RR('_acme-challenge')
 request.set_Value(os.environ['CERTBOT_VALIDATION'])
 
 response = client.do_action_with_exception(request)
+print('successfully added txt record for challenge validation...')
 print(response)
 
 with open('/tmp/ali-dns-record-id', 'w') as f:
