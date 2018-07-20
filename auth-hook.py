@@ -2,6 +2,7 @@
 
 import os
 import json
+from time import sleep
 
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkcore.acs_exception.exceptions import ClientException
@@ -25,3 +26,5 @@ print(response)
 
 with open('/tmp/ali-dns-record-id', 'w') as f:
     f.write(json.loads(response)['RecordId'])
+
+sleep(60)
