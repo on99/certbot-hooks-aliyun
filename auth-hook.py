@@ -15,10 +15,15 @@ client = AcsClient(
     'cn-beijing'
 )
 
+certbot_domain = os.environ['CERTBOT_DOMAIN']
+parts = certbot_domain.split('.')
+top_domain = '.'.join(parts[-2:])
+rr = '.'.join(['_acme-challenge'] + ([] if len(parts) < 3 else parts[:-2]))
+
 request = AddDomainRecordRequest.AddDomainRecordRequest()
-request.set_DomainName(os.environ['CERTBOT_DOMAIN'])
+request.set_DomainName(top_domain)
 request.set_Type('TXT')
-request.set_RR('_acme-challenge')
+request.set_RR(rr)
 request.set_Value(os.environ['CERTBOT_VALIDATION'])
 
 response = client.do_action_with_exception(request)
