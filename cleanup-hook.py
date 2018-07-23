@@ -17,7 +17,7 @@ def cleanup():
     )
 
     request = DeleteDomainRecordRequest.DeleteDomainRecordRequest()
-    request.set_RecordId(open('/tmp/ali-dns-record-id', 'r').read().rstrip())
+    request.set_RecordId(open('/tmp/ali-dns-record-id-%s' % os.environ['CERTBOT_DOMAIN'], 'r').read().rstrip())
 
     client.do_action_with_exception(request)
     print('successfully delete domain record used for challenge validation...')

@@ -33,7 +33,7 @@ def auth():
     print('successfully added txt record for challenge validation...')
     print(response)
 
-    with open('/tmp/ali-dns-record-id', 'w') as f:
+    with open('/tmp/ali-dns-record-id-%s' % certbot_domain, 'w') as f:
         f.write(json.loads(response)['RecordId'])
 
 auth()
