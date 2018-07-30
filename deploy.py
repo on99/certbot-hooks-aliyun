@@ -29,6 +29,8 @@ def deploy():
     live_cert_directory = os.path.dirname(os.environ['RENEWED_LINEAGE'])
 
     for domain in os.environ['RENEWED_DOMAINS'].split(' '):
+        domain = domain.lstrip('*.') # strip *. to support wildcard domain
+
         fullchain_path = os.path.join(live_cert_directory, domain, 'fullchain.pem')
         privkey_path = os.path.join(live_cert_directory, domain, 'privkey.pem')
 
