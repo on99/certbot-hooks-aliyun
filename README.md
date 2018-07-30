@@ -36,7 +36,7 @@ $ certbot certonly \
 	-d a.example.com \
 	-d b.example.com \
 	--email you@email.com \
-	--eff-email	--agree-tos --manual-public-ip-logging-ok \
+	--eff-email --agree-tos --manual-public-ip-logging-ok \
 	--manual \
 	--manual-auth-hook ./auth-hook.py \
 	--manual-cleanup-hook ./cleanup-hook.py \
