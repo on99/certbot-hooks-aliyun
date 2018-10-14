@@ -6,3 +6,4 @@ jmespath==0.7.1
 pycryptodome==3.6.4
 retrying==1.3.3
 six==1.11.0
+tld==0.9.1

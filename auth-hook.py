@@ -3,6 +3,7 @@
 import os
 import json
 from time import sleep
+import tld
 
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkcore.acs_exception.exceptions import ClientException
@@ -19,9 +20,9 @@ def auth():
     )
 
     certbot_domain = os.environ['CERTBOT_DOMAIN']
-    parts = certbot_domain.split('.')
-    top_domain = '.'.join(parts[-2:])
-    rr = '.'.join(['_acme-challenge'] + ([] if len(parts) < 3 else parts[:-2]))
+    domain = tld.get_tld(certbot_domain, as_object=True, fix_protocol=True)
+    top_domain = domain.fld
+    rr = '.'.join(['_acme-challenge'] + ([] if len(domain.subdomain) == 0 else [domain.subdomain]))
 
     request = AddDomainRecordRequest.AddDomainRecordRequest()
     request.set_DomainName(top_domain)
